@@ -27,3 +27,11 @@ func UpdateAuthor(id string, author *models.Author) {
 func DeleteAuthor(id string) {
 	DB.Delete(&models.Author{}, id)
 }
+
+func GetAuthorsByBook(bookID uint) []models.Author {
+	var authors []models.Author
+	DB.Joins("JOIN book_authors ON authors.id = book_authors.author_id").
+		Where("book_authors.book_id = ?", bookID).
+		Find(&authors)
+	return authors
+}

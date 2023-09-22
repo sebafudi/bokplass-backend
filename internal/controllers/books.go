@@ -6,10 +6,15 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/sebafudi/bokplass-backend/internal/database"
 	"github.com/sebafudi/bokplass-backend/internal/models"
+	"github.com/sebafudi/bokplass-backend/internal/views"
 )
 
 func GetBooks(c *fiber.Ctx) error {
-	return c.JSON(database.GetBooks())
+	books := database.GetBooks()
+	for i, book := range books {
+		books[i].Authors = database.GetAuthorsByBook(book.ID)
+	}
+	return c.Type("html").SendString(views.RenderBooks(books))
 }
 
 func GetBook(c *fiber.Ctx) error {
