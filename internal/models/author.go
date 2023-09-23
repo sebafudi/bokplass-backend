@@ -7,7 +7,7 @@ import (
 // Author struct
 type Author struct {
 	gorm.Model
-	ID    uint `gorm:"primaryKey"`
+	ID    uint64 `gorm:"primaryKey"`
 	Name  string
 	Books []Book `gorm:"many2many:book_authors"`
 }

@@ -13,6 +13,8 @@ func seedAuthors() {
 		{Name: "J.R.R. Tolkien"},
 		{Name: "George R.R. Martin"},
 		{Name: "Stephen King"},
+		{Name: "John E. Douglas"},
+		{Name: "Mark Olshaker"},
 	}
 	for _, author := range authors {
 		database.NewAuthor(&author)
@@ -49,6 +51,7 @@ func seedBooks() {
 		{Title: "The Dark Tower V: Wolves of the Calla", Authors: []models.Author{{ID: 4}}},
 		{Title: "The Dark Tower VI: Song of Susannah", Authors: []models.Author{{ID: 4}}},
 		{Title: "The Dark Tower VII: The Dark Tower", Authors: []models.Author{{ID: 4}}},
+		{Title: "Mindhunter: Inside the FBI's Elite Serial Crime Unit", Authors: []models.Author{{ID: 5}, {ID: 6}}},
 	}
 	for _, book := range books {
 		database.NewBook(&book)
