@@ -41,6 +41,6 @@ func GetBooksByAuthor(authorID uint64) []models.Book {
 
 func SearchBooks(search string) []models.Book {
 	var books []models.Book
-	DB.Where("title LIKE ?", "%"+search+"%").Find(&books)
+	DB.Where("LOWER(title) LIKE LOWER(?)", "%"+search+"%").Find(&books)
 	return books
 }

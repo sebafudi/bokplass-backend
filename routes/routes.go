@@ -6,8 +6,7 @@ import (
 )
 
 func Setup(app *fiber.App) {
-	// static
-	app.Static("/", "./public")
+	app.Static("/", "/app/public")
 
 	app.Get("/api/v1/authors", controllers.GetAuthors)
 	app.Get("/api/v1/authors/:id", controllers.GetAuthor)
