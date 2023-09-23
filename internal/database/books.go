@@ -38,3 +38,9 @@ func GetBooksByAuthor(authorID uint64) []models.Book {
 		Find(&books)
 	return books
 }
+
+func SearchBooks(search string) []models.Book {
+	var books []models.Book
+	DB.Where("title LIKE ?", "%"+search+"%").Find(&books)
+	return books
+}

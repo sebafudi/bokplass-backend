@@ -10,7 +10,14 @@ import (
 )
 
 func GetBooks(c *fiber.Ctx) error {
-	books := database.GetBooks()
+	// search param
+	search := c.Query("search")
+	var books []models.Book
+	if search != "" {
+		books = database.SearchBooks(search)
+	} else {
+		books = database.GetBooks()
+	}
 	for i, book := range books {
 		books[i].Authors = database.GetAuthorsByBook(book.ID)
 	}
